@@ -13,7 +13,7 @@
 #  permissions and limitations under the License.
 """Kubernetes orchestrator flavor."""
 
-from typing import TYPE_CHECKING, Optional, Type
+from typing import TYPE_CHECKING, Dict, List, Optional, Type
 
 from zenml.config.base_settings import BaseSettings
 from zenml.constants import KUBERNETES_CLUSTER_RESOURCE_TYPE
@@ -46,6 +46,7 @@ class KubernetesOrchestratorSettings(BaseSettings):
     timeout: int = 0
     service_account_name: Optional[str] = None
     pod_settings: Optional[KubernetesPodSettings] = None
+    image_pull_secrets: Optional[List[Dict[str, str]]] = None
 
 
 class KubernetesOrchestratorConfig(  # type: ignore[misc] # https://github.com/pydantic/pydantic/issues/4173

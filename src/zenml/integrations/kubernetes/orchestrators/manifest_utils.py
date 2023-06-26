@@ -147,6 +147,12 @@ def build_pod_manifest(
     if service_account_name is not None:
         pod_spec.service_account_name = service_account_name
 
+    if settings.image_pull_secrets:
+        pod_spec.image_pull_secrets = [
+            k8s_client.V1LocalObjectReference(name=image_pull_secret["name"])
+            for image_pull_secret in settings.image_pull_secrets
+        ]
+
     if settings.pod_settings:
         add_pod_settings(pod_spec, settings.pod_settings)
 
